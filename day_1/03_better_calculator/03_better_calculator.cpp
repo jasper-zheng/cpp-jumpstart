@@ -7,10 +7,11 @@ double calculate(double input1, double input2, string op);
 
 int main() {
     
-    string op;
-    double num1, num2;
-    
     while(true){
+        
+        string op; //operator
+        double num1, num2;
+    
         cout << "First number:\t";
         cin >> num1;
         cout << "Operation: \t\t";
@@ -27,12 +28,10 @@ int main() {
     }
 }
 
-
 double calculate(double input1, double input2, string op){
     // we take two input numbers, check the operation type, then return the result
     
-    double result = 0.0;
-    
+    double result = 2.0;
     if (op == "+"){
         result = input1 + input2;
         cout << input1 << op << input2 << "=" << result << "\n\n";
@@ -50,6 +49,7 @@ double calculate(double input1, double input2, string op){
         result = input1;
     }
     return result;
+
 }
 
 

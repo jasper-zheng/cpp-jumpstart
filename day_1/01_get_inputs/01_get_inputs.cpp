@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    
+
     string name;
     cout << "Enter a name: ";
     getline(cin, name);
@@ -16,5 +16,6 @@ int main() {
     cout << "Age: " << age << "\n";
     
     return 0;
+    
+    
 }
-

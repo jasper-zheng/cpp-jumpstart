@@ -32,8 +32,6 @@ int findLargest(int arr[], int length){
 
 
 
-
-
 // bonus:
 
 // Recursion is all you need

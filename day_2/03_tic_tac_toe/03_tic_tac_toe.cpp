@@ -19,13 +19,15 @@ int main() {
     
     // game will last for 9 turns since we have a 3x3 grid (x_dim * y_dim)
     for (int i = 0; i < x_dim * y_dim; i++){
+        
         int x = -1;
-        int y = -1;
+        int y = -1;// we initialise x and y to -1 just to skip the check in the first round of the while loop
+        
         int marker = i % 2 + 1;
         // marker: 1 for player 1, 2 for player 2;
         // % is a modulo operator, returns the remainder of a division
-        // if i is an even number, it's player1's turn, we turn the marker to 1
-        // if i is an odd number, it's player2's turn, we turn the marker to 2
+        // if i is an even number, it's player1's turn, the marker goes to 1
+        // if i is an odd number, it's player2's turn, the marker goes to 2
         
         while (checkInput(x, y)){
             if (marker == 1){

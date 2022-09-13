@@ -24,9 +24,9 @@ int main() {
     }
     
     int length = sizeof(myNums)/sizeof(myNums[0]);
-    printArray(myNums, length);
+    printArray(myNums, length); // use array
     
-    printVector(myVectorNums);
+    printVector(myVectorNums);  // use vector
     
     
     return 0;
