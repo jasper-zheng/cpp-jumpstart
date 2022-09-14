@@ -46,4 +46,3 @@ int findLargestCool(int arr[], int length){
 }
 
 
-

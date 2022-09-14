@@ -14,16 +14,17 @@ bool checkInput(int x, int y);
 
 int main() {
     
+    int x = -1;
+    int y = -1;// we initialise x and y to -1 just to skip the check in the first round of the while loop
+    int marker;
+    
     initialiseGrid();
     showGrid();
     
     // game will last for 9 turns since we have a 3x3 grid (x_dim * y_dim)
     for (int i = 0; i < x_dim * y_dim; i++){
         
-        int x = -1;
-        int y = -1;// we initialise x and y to -1 just to skip the check in the first round of the while loop
-        
-        int marker = i % 2 + 1;
+        marker = i % 2 + 1;
         // marker: 1 for player 1, 2 for player 2;
         // % is a modulo operator, returns the remainder of a division
         // if i is an even number, it's player1's turn, the marker goes to 1
@@ -46,6 +47,7 @@ int main() {
 }
 
 void initialiseGrid(){
+    // initialise the grid to zeros.
     for (int y = 0; y < y_dim; y++){
         for (int x = 0; x < x_dim; x++){
             grid[y][x] = 0;
@@ -54,6 +56,7 @@ void initialiseGrid(){
 }
 
 void showGrid(){
+    // print the grid according to the integers in the array
     for (int y = 0; y < y_dim; y++){
         for (int x = 0; x < x_dim; x++){
             switch(grid[y][x]) {
@@ -75,8 +78,11 @@ void showGrid(){
 
 bool checkInput(int x, int y){
     if (x == -1 and y == -1){
+        // skip the error messages
         return true;
     } else {
+        // we check if the row/column number is within the range
+        // and check if the cell is taken
         if (x <= 0 or x > x_dim or y <= 0 or y > y_dim){
             cout << "row number should between 0 and " << y_dim << "\n";
             cout << "column number should between 0 and " << x_dim << "\n\n";

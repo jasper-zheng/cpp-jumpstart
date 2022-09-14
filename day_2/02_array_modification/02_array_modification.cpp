@@ -9,19 +9,19 @@ void printVector(vector<int> &vec);
 
 int main() {
     
-    int myNums[50]; // we can use array
+//    int myNums[50]; // we can use array
     vector<int> myVectorNums; // or vector, both fine. But for vector we don't need to define the size
     
-    // initialising out array/vector
+    int myNums[50];
+    
     for (int i = 0; i < 50; i++){
         if (i % 4 == 0){
             myNums[i] = 0;
-            myVectorNums.push_back(0);
         } else {
             myNums[i] = i;
-            myVectorNums.push_back(i);
         }
     }
+    
     
     int length = sizeof(myNums)/sizeof(myNums[0]);
     printArray(myNums, length); // use array
