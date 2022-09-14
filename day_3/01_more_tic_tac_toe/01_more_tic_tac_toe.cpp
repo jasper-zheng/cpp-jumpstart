@@ -3,28 +3,28 @@
 #include <vector>
 using namespace std;
 
-bool checkInput(int x, int y);
-
-
 class Grid {
     
 private:
     int x_dim; // the x dimension of the grid
     int y_dim; // the y dimension of the grid
+    
+    // the grid:
+    // 0 for empty
+    // 1 for "x" - player 1
+    // 2 for "o" - player 2
     vector<vector<int> >grid;
     
 public:
+    //----------------------------------------------
+    // this is the class constructor that is going to run when we define a new Grid object
     Grid(int x, int y){
         x_dim = x;
         y_dim = y;
-        
-        // the grid:
-        // 0 for empty
-        // 1 for "x" - player 1
-        // 2 for "o" - player 2
-        
         initialiseGrid(x_dim, y_dim);
     }
+    
+    //----------------------------------------------
     
     void initialiseGrid(int x_dim, int y_dim){
         for (int y = 0; y < y_dim; y++){
@@ -35,6 +35,8 @@ public:
             grid.push_back(row);
         }
     }
+    
+    //----------------------------------------------
     
     void showGrid(){
         for (int y = 0; y < y_dim; y++){
@@ -57,8 +59,14 @@ public:
         cout << "\n";
     }
     
+    //----------------------------------------------
+    
     bool isGameOver(){
         int checks[] = {checkRowCrossed(),checkDiagonalCrossed(),checkColumnCrossed()};
+        // we are checking on every rows, columns and diagonals to see if there is a winner
+        // these three functions return integer 1 or 2 indicating player 1 or 2 has win the game
+        // they'll return 0 if there's no winner
+        // we are using an array to store the checking result, so iterate through the results
         for (int i = 0; i<3; i++){
             switch(checks[i]) {
                 case 0:
@@ -71,6 +79,8 @@ public:
                     return true;
             }
         }
+        
+        // now we check if the grid has no empty space, in that case the game ends with a draw
         bool noEmptyGrid = true;
         for (int y = 0; y < y_dim; y++){
             for (int x = 0; x < x_dim; x++){
@@ -84,6 +94,9 @@ public:
         }
         return noEmptyGrid;
     }
+    
+    //----------------------------------------------
+    
     int checkRowCrossed(){
         for (int i = 0; i < y_dim; i++){
             if (grid[i][0] == grid[i][1] and grid[i][1] == grid[i][2] and grid[i][0] != 0){
@@ -111,6 +124,8 @@ public:
         return 0;
     }
     
+    //----------------------------------------------
+    
     bool checkInput(int x, int y){
         if (x == -255 and y == -255){
             return true;
@@ -128,27 +143,35 @@ public:
         }
     }
     
+    //----------------------------------------------
+    
     void placeMarker(int x, int y, int marker){
         grid[y-1][x-1] = marker;
     }
+    
+    //----------------------------------------------
+    
 };
 
 
 
 
-class Interaction {
+
+class Player {
 private:
-    int marker;
+    int index;
     char marker_char;
 public:
-    Interaction(int marker_in){
-        marker = marker_in;
+    Player(int marker_in){
+        index = marker_in;
         if (marker_in == 1){
             marker_char = 'x';
         } else {
             marker_char = 'o';
         }
     }
+    
+    // we are having a & in front of the variable, means we are passing a reference of the vector, instead of passing a copy of it, so changes made here reflect in main()
     void playersMove(Grid &grid){
         int x = -255, y = -255;
         while(grid.checkInput(x, y)){
@@ -157,31 +180,35 @@ public:
             cout << "enter column: ";
             cin >> x;
         }
-        grid.placeMarker(x, y, marker);
+        grid.placeMarker(x, y, index);
     }
 };
 
 
 
+
 int main() {
     
-    Grid grid1(3, 3);
-    grid1.showGrid();
+    Grid grid(3, 3);
+    grid.showGrid();
     
-    Interaction player1(1);
-    Interaction player2(2);
+    Player player1(1);
+    Player player2(2);
     
     int round = 0;
-    while(!grid1.isGameOver()){
+    while(!grid.isGameOver()){
         if (round%2 == 0){
-            player1.playersMove(grid1);
-            
+            player1.playersMove(grid);
         } else{
-            player2.playersMove(grid1);
+            player2.playersMove(grid);
         }
-        grid1.showGrid();
+        grid.showGrid();
         round+=1;
     }
 
 }
+
+
+
+
 

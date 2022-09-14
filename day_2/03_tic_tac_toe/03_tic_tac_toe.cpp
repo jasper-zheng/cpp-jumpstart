@@ -42,6 +42,7 @@ int main() {
             cin >> x;
         }
         grid[y-1][x-1] = marker;
+        
         showGrid();
     }
 }
