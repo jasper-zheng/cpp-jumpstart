@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A206FB7128CB5ECA0051A16B /* 01_find_largest_number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A206FB7028CB5ECA0051A16B /* 01_find_largest_number.cpp */; };
-		A24441F328D1C0D900340862 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A24441F228D1C0D900340862 /* main.cpp */; };
 		A27F076C28CA021D00EF3618 /* 03_better_calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A27F076B28CA021D00EF3618 /* 03_better_calculator.cpp */; };
 		A27F078028CA2FDD00EF3618 /* 03_tic_tac_toe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A27F077F28CA2FDD00EF3618 /* 03_tic_tac_toe.cpp */; };
 		A27F079328CA910800EF3618 /* 02_array_modification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A27F079228CA910800EF3618 /* 02_array_modification.cpp */; };
@@ -96,7 +95,6 @@
 		A206FB6E28CB5ECA0051A16B /* 01_find_largest_number */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 01_find_largest_number; sourceTree = BUILT_PRODUCTS_DIR; };
 		A206FB7028CB5ECA0051A16B /* 01_find_largest_number.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 01_find_largest_number.cpp; sourceTree = "<group>"; };
 		A24441F028D1C0D800340862 /* array */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = array; sourceTree = BUILT_PRODUCTS_DIR; };
-		A24441F228D1C0D900340862 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A279F3ED28689B3A00BE31F3 /* 01_get_inputs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 01_get_inputs; sourceTree = BUILT_PRODUCTS_DIR; };
 		A279F3F028689B3A00BE31F3 /* 02_calculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 02_calculator.cpp; sourceTree = "<group>"; };
 		A27F076928CA021D00EF3618 /* 03_better_calculator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 03_better_calculator; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,21 +197,12 @@
 			path = day_2;
 			sourceTree = "<group>";
 		};
-		A24441F128D1C0D800340862 /* array */ = {
-			isa = PBXGroup;
-			children = (
-				A24441F228D1C0D900340862 /* main.cpp */,
-			);
-			path = array;
-			sourceTree = "<group>";
-		};
 		A279F3E428689B3A00BE31F3 = {
 			isa = PBXGroup;
 			children = (
 				A206FB8128CBCD0C0051A16B /* day_1 */,
 				A206FB8E28CBCD540051A16B /* day_2 */,
 				A2C8DDFB28CD58A800D16F68 /* day_3 */,
-				A24441F128D1C0D800340862 /* array */,
 				A279F3EE28689B3A00BE31F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -500,7 +489,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A24441F328D1C0D900340862 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

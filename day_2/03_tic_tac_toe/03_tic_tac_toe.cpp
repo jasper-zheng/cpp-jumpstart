@@ -6,7 +6,8 @@ using namespace std;
 const int x_dim = 3; // the x dimension of the grid
 const int y_dim = 3; // the y dimension of the grid
 
-int grid[y_dim][x_dim];
+int grid[y_dim][x_dim]; // grid: 0 for empty; 1 for player x; 2 for player o;
+int marker; // marker: 1 for player x, 2 for player o;
 
 void initialiseGrid();
 void showGrid();
@@ -14,10 +15,7 @@ bool checkInput(int x, int y);
 
 int main() {
     
-    int x = -1;
-    int y = -1;// we initialise x and y to -1 just to skip the check in the first round of the while loop
-    int marker;
-    
+    int x,y;
     initialiseGrid();
     showGrid();
     
@@ -25,12 +23,8 @@ int main() {
     for (int i = 0; i < x_dim * y_dim; i++){
         
         marker = i % 2 + 1;
-        // marker: 1 for player 1, 2 for player 2;
-        // % is a modulo operator, returns the remainder of a division
-        // if i is an even number, it's player1's turn, the marker goes to 1
-        // if i is an odd number, it's player2's turn, the marker goes to 2
         
-        while (checkInput(x, y)){
+        while (true) {
             if (marker == 1){
                 cout << "Player x \n";
             } else {
@@ -40,9 +34,12 @@ int main() {
             cin >> y;
             cout << "enter column: ";
             cin >> x;
+            
+            if (checkInput(x, y)){
+                break;
+            }
         }
         grid[y-1][x-1] = marker;
-        
         showGrid();
     }
 }
@@ -78,23 +75,20 @@ void showGrid(){
 }
 
 bool checkInput(int x, int y){
-    if (x == -1 and y == -1){
-        // skip the error messages
-        return true;
+
+    // we check if the row/column number is within the range
+    // and check if the cell is taken
+    if (x <= 0 or x > x_dim or y <= 0 or y > y_dim){
+        cout << "row number should between 0 and " << y_dim << "\n";
+        cout << "column number should between 0 and " << x_dim << "\n\n";
+        return false;
+    } else if (grid[y-1][x-1] != 0){
+        cout << "row "<< y << " column " << x << " already taken\n\n";
+        return false;
     } else {
-        // we check if the row/column number is within the range
-        // and check if the cell is taken
-        if (x <= 0 or x > x_dim or y <= 0 or y > y_dim){
-            cout << "row number should between 0 and " << y_dim << "\n";
-            cout << "column number should between 0 and " << x_dim << "\n\n";
-            return true;
-        } else if (grid[y-1][x-1] != 0){
-            cout << "row "<< y << " column " << x << " already taken\n\n";
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
+    
 }
 
 

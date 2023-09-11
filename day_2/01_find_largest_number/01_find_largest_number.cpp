@@ -3,7 +3,7 @@
 using namespace std;
 
 int findLargest(int arr[], int length);
-int findLargestCool(int arr[], int length);
+int findLargestNoLoop(int arr[], int length);
 
 int main() {
     
@@ -37,11 +37,11 @@ int findLargest(int arr[], int length){
 // Recursion is all you need
 // https://www.youtube.com/watch?v=ngCos392W4w
 
-int findLargestCool(int arr[], int length){
+int findLargestNoLoop(int arr[], int length){
     if (length == 1){
         return arr[0];
     } else {
-        return max(arr[length - 1], findLargestCool(arr, length - 1));
+        return max(arr[length - 1], findLargestNoLoop(arr, length - 1));
     }
 }
 

@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 
+
 class Grid {
     
 private:
@@ -62,63 +63,74 @@ public:
     //----------------------------------------------
     
     bool isGameOver(){
-        int checks[] = {checkRowCrossed(),checkDiagonalCrossed(),checkColumnCrossed()};
+        
         // we are checking on every rows, columns and diagonals to see if there is a winner
-        // these three functions return integer 1 or 2 indicating player 1 or 2 has win the game
-        // they'll return 0 if there's no winner
-        // we are using an array to store the checking result, so iterate through the results
-        for (int i = 0; i<3; i++){
-            switch(checks[i]) {
-                case 0:
-                    break;
-                case 1:
-                    cout << "player x win\n";
-                    return true;
-                case 2:
-                    cout << "player o win\n";
-                    return true;
-            }
+        // these three functions return 0 if there's no winner, return 1 or 2 indicating player 1 or 2 has win the game
+        int row = checkRowCrossed();
+        int col = checkColumnCrossed();
+        int dia = checkDiagonalCrossed();
+        
+        if (row==1 or col==1 or dia==1){
+            cout << "player x win\n";
+            return true;
+        } else if (row==2 or col==2 or dia==2){
+            cout << "player o win\n";
+            return true;
         }
         
-        // now we check if the grid has no empty space, in that case the game ends with a draw
-        bool noEmptyGrid = true;
+        // next, we check if the grid has no empty space, in that case the game ends with a draw
         for (int y = 0; y < y_dim; y++){
             for (int x = 0; x < x_dim; x++){
                 if (grid[y][x] == 0){
-                    noEmptyGrid = false;
+                    // if we spot an empty space, return false so that the game is not over
+                    return false;
                 }
             }
         }
-        if (noEmptyGrid){
-            cout << "draw\n";
-        }
-        return noEmptyGrid;
+        cout << "draw\n";
+        return true;
     }
     
     //----------------------------------------------
     
     int checkRowCrossed(){
         for (int i = 0; i < y_dim; i++){
-            if (grid[i][0] == grid[i][1] and grid[i][1] == grid[i][2] and grid[i][0] != 0){
-                return grid[i][0];
+            int n = 0;
+            while (grid[i][n] == grid[i][n+1] and grid[i][n] != 0){
+                n += 1;
+                if (n == x_dim - 1){
+                    // If we find two pairs of matching marks in a row, return with the number at that place.
+                    return grid[i][n];
+                }
             }
         }
+        // If we checked all rows and found nothing, return 0
         return 0;
     }
     int checkColumnCrossed(){
         for (int i = 0; i < x_dim; i++){
-            if (grid[0][i] == grid[1][i] and grid[1][i] == grid[2][i] and grid[0][i] != 0){
-                return grid[0][i];
+            int n = 0;
+            while (grid[n][i] == grid[n+1][i] and grid[n][i] != 0){
+                n += 1;
+                if (n == y_dim - 1){
+                    return grid[n][i];
+                }
             }
         }
         return 0;
     }
     int checkDiagonalCrossed(){
-        if (grid[1][1] != 0){
-            if (grid[0][0] == grid[2][2] and grid[1][1] == grid[2][2]){
-                return grid[0][0];
-            } else if (grid[0][2] == grid[2][0] and grid[1][1] == grid[2][0]){
-                return grid[0][0];
+        int i = 0, n = 0;
+        while (grid[i][i] == grid[i+1][i+1] and grid[i][i] != 0){
+            i+=1;
+            if (i == x_dim - 1){
+                return grid[i][i];
+            }
+        }
+        while (grid[n][x_dim-n-1] == grid[n+1][x_dim-n-2] and grid[n][x_dim-n-1] != 0){
+            n+=1;
+            if (n == x_dim - 1){
+                return grid[n][x_dim - n - 1];
             }
         }
         return 0;
@@ -127,20 +139,17 @@ public:
     //----------------------------------------------
     
     bool checkInput(int x, int y){
-        if (x == -255 and y == -255){
-            return true;
+        if (x <= 0 or x > x_dim or y <= 0 or y > y_dim){
+            cout << "row number should between 0 and " << y_dim << "\n";
+            cout << "column number should between 0 and " << x_dim << "\n\n";
+            return false;
+        } else if (grid[y-1][x-1] != 0){
+            cout << "row "<< y << " column " << x << " already taken\n\n";
+            return false;
         } else {
-            if (x <= 0 or x > x_dim or y <= 0 or y > y_dim){
-                cout << "row number should between 0 and " << y_dim << "\n";
-                cout << "column number should between 0 and " << x_dim << "\n\n";
-                return true;
-            } else if (grid[y-1][x-1] != 0){
-                cout << "row "<< y << " column " << x << " already taken\n\n";
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         }
+        
     }
     
     //----------------------------------------------
@@ -171,14 +180,17 @@ public:
         }
     }
     
-    // we are having a & in front of the variable, means we are passing a reference of the vector, instead of passing a copy of it, so changes made here reflect in main()
+    // we are having a "&" in front of the variable, means we are passing a reference of the vector, instead of passing a copy of it, so changes made here is reflectd in main()
     void playersMove(Grid &grid){
-        int x = -255, y = -255;
-        while(grid.checkInput(x, y)){
+        int x, y;
+        while(true){
             cout << "player " << marker_char << ":\nenter row: ";
             cin >> y;
             cout << "enter column: ";
             cin >> x;
+            if(grid.checkInput(x, y)){
+                break;
+            }
         }
         grid.placeMarker(x, y, index);
     }
@@ -186,16 +198,15 @@ public:
 
 
 
-
 int main() {
-    
+
     Grid grid(3, 3);
-    grid.showGrid();
-    
     Player player1(1);
     Player player2(2);
-    
+
     int round = 0;
+    grid.showGrid();
+
     while(!grid.isGameOver()){
         if (round%2 == 0){
             player1.playersMove(grid);
@@ -203,9 +214,9 @@ int main() {
             player2.playersMove(grid);
         }
         grid.showGrid();
-        round+=1;
+        round += 1;
     }
-
+    return 0;
 }
 
 
