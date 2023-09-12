@@ -33,7 +33,8 @@ int main() {
 double calculate(double input1, double input2, string op){
     // we take two input numbers, check the operation type, then return the result
     
-    double result = 2.0;
+    double result;
+    
     if (op == "+"){
         result = input1 + input2;
         cout << input1 << op << input2 << "=" << result << "\n\n";
@@ -51,7 +52,6 @@ double calculate(double input1, double input2, string op){
         result = input1;
     }
     return result;
-
 }
 
 

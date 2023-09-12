@@ -5,14 +5,11 @@
 using namespace std;
 
 void printArray(int arr[], int length);
-void printVector(vector<int> &vec);
 
 int main() {
     
-//    int myNums[50]; // we can use array
-    vector<int> myVectorNums; // or vector, both fine. But for vector we don't need to define the size
+    int myNums[50]; // initialise an empty array
     
-    int myNums[50];
     
     for (int i = 0; i < 50; i++){
         if (i % 4 == 0){
@@ -22,29 +19,18 @@ int main() {
         }
     }
     
-    
     int length = sizeof(myNums)/sizeof(myNums[0]);
-    printArray(myNums, length); // use array
-    
-    printVector(myVectorNums);  // use vector
-    
+    printArray(myNums, length);
     
     return 0;
 }
 
 
 void printArray(int arr[], int length){
+    
     cout << "array:\n";
     for (int i = 0; i < length; i++){
         cout << arr[i] << " ";
-    }
-    cout << "\n";
-}
-
-void printVector(vector<int> &vec){
-    cout << "vector:\n";
-    for (int i = 0; i < vec.size(); i++){
-        cout << vec[i] << " ";
     }
     cout << "\n";
 }
