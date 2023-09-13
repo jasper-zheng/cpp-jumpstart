@@ -8,7 +8,7 @@ void printArray(int arr[], int length);
 
 int main() {
     
-    int myNums[50]; // initialise an empty array
+    int myNums[50]; // initialise 50 places, and one address
     
     
     for (int i = 0; i < 50; i++){
@@ -20,6 +20,7 @@ int main() {
     }
     
     int length = sizeof(myNums)/sizeof(myNums[0]);
+    
     printArray(myNums, length);
     
     return 0;
@@ -33,5 +34,6 @@ void printArray(int arr[], int length){
         cout << arr[i] << " ";
     }
     cout << "\n";
+    
 }
 

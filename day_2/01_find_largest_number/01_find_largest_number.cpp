@@ -9,8 +9,9 @@ int main() {
     
 
     int scores[] = {10,24,12,21,12,2,42,40,24,41};
-    
     int length = sizeof(scores)/sizeof(scores[0]);
+    
+    
     int largest = findLargest(scores, length);
     
     cout << largest << "\n";
@@ -45,5 +46,4 @@ int findLargestNoLoop(int arr[], int length){
         return max(arr[length - 1], findLargestNoLoop(arr, length - 1));
     }
 }
-
 

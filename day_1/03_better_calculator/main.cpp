@@ -5,6 +5,8 @@ using namespace std;
 // don't forget to initialise your functions!
 double calculate(double input1, double input2, string op);
 
+// Header file
+
 int main() {
     
     string op = ""; //operator
@@ -30,10 +32,11 @@ int main() {
 }
 
 
+
 double calculate(double input1, double input2, string op){
     // we take two input numbers, check the operation type, then return the result
     
-    double result;
+    double result = 0.0;
     
     if (op == "+"){
         result = input1 + input2;
@@ -49,6 +52,7 @@ double calculate(double input1, double input2, string op){
         cout << input1 << op << input2 << "=" << result << "\n\n";
     } else {
         cout << op << " not implemented" << "\n\n";
+        cout << result << endl;
         result = input1;
     }
     return result;
