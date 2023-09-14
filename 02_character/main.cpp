@@ -54,8 +54,7 @@ Character::Character(string name, int hp, int ad, int ar){
     this->ar = ar;
     cout << "character: " << name << " created" << endl;
 }
-Computer::Computer(string name, int hp, int ad, int ar): Character(name, hp, ad, ar){
-    this->name = name + "(computer)";
+Computer::Computer(string name, int hp, int ad, int ar): Character(name + "(computer)", hp, ad, ar){
     cout << "computer: " << this->name << " created" << endl;
 };
 
