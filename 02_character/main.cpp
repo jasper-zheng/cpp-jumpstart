@@ -26,11 +26,21 @@ public:
     void respawn();
 };
 
+class Computer : public Character{
+public:
+    Computer(string name, int hp, int ad, int ar);
+};
+
+
+
 int main() {
     Character bob("bob", 2000, 400, 100);
     Character alice("alice", 1000, 300, 200);
     bob.respawn();
     alice.respawn();
+    
+    Computer james("james", 1000, 300, 200);
+    james.respawn();
     
     return 0;
 }
@@ -42,7 +52,14 @@ Character::Character(string name, int hp, int ad, int ar){
     this->hp = hp;
     this->ad = ad;
     this->ar = ar;
+    cout << "character: " << name << " created" << endl;
 }
+Computer::Computer(string name, int hp, int ad, int ar): Character(name, hp, ad, ar){
+    this->name = name + "(computer)";
+    cout << "computer: " << this->name << " created" << endl;
+};
+
+
 void Character::respawn() {
     // some code for respawning...
     cout << name << " respawned with hp: " << hp << endl;
